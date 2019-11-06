@@ -44,8 +44,6 @@ export class DrinkService {
 
 
   private getDrinks(param, query, route): Observable<any> {
-    console.log(`${this.ROOT_URL}${route}.php?${param}=${query}`);
-
     return this.http.get(`${this.ROOT_URL}${route}.php?${param}=${query}`);
   }
 
