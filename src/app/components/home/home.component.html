@@ -1,4 +1,4 @@
 <div class="container home-wrapper">
-    <app-search></app-search>
+    <app-search (searchEvent)="searchDrinks($event)"></app-search>
     <app-list [drinkList]="drinkList"></app-list>
 </div>

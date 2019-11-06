@@ -24,4 +24,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  public searchDrinks(options) {
+    console.log(options);
+
+  }
+
 }

@@ -1,5 +1,21 @@
-<div class="field">
+<div class="field has-addons">
     <div class="control">
-        <input class="input is-large" type="text" placeholder="Large input">
+        <input [(ngModel)]="searchOptions.searchString" (keyup)="handleInput($event.key)" class="input is-medium is-primary"
+            type="text" placeholder="search for a drink...">
+    </div>
+    <div class="control">
+        <div class="select is-medium is-primary">
+            <select (change)="handleDropdown($event.target.value)">
+                <option>any</option>
+                <option>name</option>
+                <option>ingredient</option>
+                <option>category</option>
+            </select>
+        </div>
+    </div>
+    <div class="control">
+        <a class="button is-medium is-primary" (click)="search()">
+            Go
+        </a>
     </div>
 </div>
