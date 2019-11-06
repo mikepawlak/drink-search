@@ -14,4 +14,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   }
 
+  public viewDrink(id: number) {
+    console.log(id);
+
+  }
+
 }

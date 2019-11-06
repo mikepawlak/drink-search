@@ -1,9 +1,10 @@
-<table class="table">
+<table class="table is-fullwidth is-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Category</th>
             <th>Booze?</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -11,6 +12,9 @@
             <td>{{drink.name}}</td>
             <td>{{drink.category}}</td>
             <td>{{drink.alcoholic}}</td>
+            <td>
+                <a (click)="viewDrink(drink.id)">See More...</a>
+            </td>
         </tr>
     </tbody>
 </table>
