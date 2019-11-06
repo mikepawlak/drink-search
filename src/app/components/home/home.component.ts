@@ -26,14 +26,14 @@ export class HomeComponent implements OnInit {
   }
 
   public searchDrinks(options: SearchOptions) {
+    console.log(options);
+
     this.drinkService.searchBy(options.searchString, options.queryParam).subscribe(
       succ => {
         this.drinkList = succ;
       }, err => {
         console.log(err);
-
       }
     );
   }
-
 }

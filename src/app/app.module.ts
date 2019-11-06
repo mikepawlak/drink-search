@@ -9,6 +9,7 @@ import { SearchComponent } from './components/home/search/search.component';
 import { ListComponent } from './components/home/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FilterComponent } from './components/home/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     SearchComponent,
-    ListComponent
+    ListComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

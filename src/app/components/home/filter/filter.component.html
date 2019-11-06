@@ -1,0 +1,31 @@
+<div class="dropdown is-hoverable is-pulled-right">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" (click)="toggleDrop" aria-controls="dropdown-menu">
+            <span>Category</span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <a href="#" class="dropdown-item" *ngFor="let category of categoryList" (click)="filterBy(category, 'category')">
+                {{category}}
+            </a>
+        </div>
+    </div>
+</div>
+<div class="dropdown is-hoverable is-pulled-right">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" (click)="toggleDrop" aria-controls="dropdown-menu">
+            <span>Alcoholic?</span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <a href="#" class="dropdown-item" (click)="filterBy('Alcoholic', 'alcoholic')">
+                Alcoholic
+            </a>
+            <a href="#" class="dropdown-item" (click)="filterBy('Non Alcoholic', 'alcoholic')">
+                Non Alcoholic
+            </a>
+        </div>
+    </div>
+</div>

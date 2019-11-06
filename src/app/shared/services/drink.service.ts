@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { DrinkVO } from '../models/DrinkVO';
 import { HttpClient } from '@angular/common/http';
-import { take, filter } from 'rxjs/operators';
 import { Drink } from '../models/Drink';
 import { Ingredient } from '../models/Ingredient';
 
@@ -14,6 +13,9 @@ export class DrinkService {
   SEARCH_PARAM_MAP = {
     "name": "s",
     "ingredient": "i",
+    "category": "c",
+    "alcoholic": "a"
+
   }
 
   constructor(private http: HttpClient) { }
@@ -24,7 +26,7 @@ export class DrinkService {
 
     this.getDrinks(this.SEARCH_PARAM_MAP[param], searchString, route).subscribe(
       succ => {
-        if (succ.drinks) {
+        if (succ && succ.drinks) {
           drinks.next(this.transformDrinks(succ.drinks));
         } else {
           drinks.next([]);
@@ -36,13 +38,9 @@ export class DrinkService {
       }
     )
 
-
     return drinks.asObservable();
   }
 
-  public filterBy(...filterOptions): Observable<DrinkVO[]> {
-    return of([]);
-  }
 
   private getDrinks(param, query, route): Observable<any> {
     console.log(`${this.ROOT_URL}${route}.php?${param}=${query}`);

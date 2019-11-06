@@ -10,7 +10,7 @@ import { SearchOptions } from 'src/app/shared/models/SearchOptions';
 export class SearchComponent implements OnInit {
   @Output() searchEvent = new EventEmitter<SearchOptions>();
 
-  searchOptions: SearchOptions = new SearchOptions("");
+  searchOptions: SearchOptions = new SearchOptions();
 
   constructor() { }
 

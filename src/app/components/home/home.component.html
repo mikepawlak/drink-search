@@ -1,4 +1,7 @@
 <div class="container home-wrapper">
-    <app-search (searchEvent)="searchDrinks($event)"></app-search>
+    <div class="columns is-desktop">
+        <app-search class="column" (searchEvent)="searchDrinks($event)"></app-search>
+        <app-filter class="column" (filterEvent)="searchDrinks($event)"></app-filter>
+    </div>
     <app-list [drinkList]="drinkList"></app-list>
 </div>
