@@ -14,6 +14,7 @@ export class DrinkService {
     "name": "s",
     "ingredient": "i",
     "category": "c",
+    "glass": "g",
     "alcoholic": "a"
 
   }

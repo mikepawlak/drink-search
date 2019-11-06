@@ -15,6 +15,20 @@
 <div class="dropdown is-hoverable is-pulled-right">
     <div class="dropdown-trigger">
         <button class="button" aria-haspopup="true" (click)="toggleDrop" aria-controls="dropdown-menu">
+            <span>Glass</span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <a href="#" class="dropdown-item" *ngFor="let glass of glassList" (click)="filterBy(glass, 'glass')">
+                {{glass}}
+            </a>
+        </div>
+    </div>
+</div>
+<div class="dropdown is-hoverable is-pulled-right">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" (click)="toggleDrop" aria-controls="dropdown-menu">
             <span>Alcoholic?</span>
         </button>
     </div>
