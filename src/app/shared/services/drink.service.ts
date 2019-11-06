@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { DrinkVO } from '../models/DrinkVO';
 import { HttpClient } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+import { take, filter } from 'rxjs/operators';
 import { Drink } from '../models/Drink';
 import { Ingredient } from '../models/Ingredient';
 
@@ -10,32 +10,44 @@ import { Ingredient } from '../models/Ingredient';
   providedIn: 'root'
 })
 export class DrinkService {
-  ROOT_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php";
+  ROOT_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
+  SEARCH_PARAM_MAP = {
+    "name": "s",
+    "ingredient": "i",
+  }
 
   constructor(private http: HttpClient) { }
 
-  public searchBy(searchString, filter): Observable<DrinkVO[]> {
-    let response = new Subject<DrinkVO[]>();
+  public searchBy(searchString, param): Observable<DrinkVO[]> {
+    let drinks = new Subject<DrinkVO[]>();
+    let route = (param === "name") ? "search" : "filter";
 
-    this.getDrinks(filter, searchString).subscribe(
+    this.getDrinks(this.SEARCH_PARAM_MAP[param], searchString, route).subscribe(
       succ => {
-        response.next(this.transformDrinks(succ.drinks));
+        if (succ.drinks) {
+          drinks.next(this.transformDrinks(succ.drinks));
+        } else {
+          drinks.next([]);
+        }
       },
       err => {
         console.log(err);
-        response.next([]);
+        drinks.next([]);
       }
     )
 
-    return response.asObservable();
+
+    return drinks.asObservable();
   }
 
   public filterBy(...filterOptions): Observable<DrinkVO[]> {
     return of([]);
   }
 
-  private getDrinks(param, query): Observable<any> {
-    return this.http.get(`${this.ROOT_URL}?${param}=${query}`);
+  private getDrinks(param, query, route): Observable<any> {
+    console.log(`${this.ROOT_URL}${route}.php?${param}=${query}`);
+
+    return this.http.get(`${this.ROOT_URL}${route}.php?${param}=${query}`);
   }
 
   private transformDrinks(drinkArr: Drink[]): DrinkVO[] {
@@ -54,7 +66,7 @@ export class DrinkService {
         alcoholic: drink['strAlcoholic'],
         glass: drink['strGlass'],
         instructions: drink['strInstructions'],
-        drinkTHumb: drink['strDrinkThumb'],
+        drinkThumb: drink['strDrinkThumb'],
         ingredients: ingredientList
       })
     });

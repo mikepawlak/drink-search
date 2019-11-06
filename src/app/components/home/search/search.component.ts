@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.searchOptions.queryParam = 'name';
   }
 
   public search() {

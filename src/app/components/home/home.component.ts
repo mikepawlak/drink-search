@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DrinkService } from 'src/app/shared/services/drink.service';
 import { DrinkVO } from 'src/app/shared/models/DrinkVO';
+import { SearchOptions } from 'src/app/shared/models/SearchOptions';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private drinkService: DrinkService) { }
 
   ngOnInit() {
-    this.drinkService.searchBy("vodka", "s").subscribe(
+    this.drinkService.searchBy("vodka", "name").subscribe(
       succ => {
         this.drinkList = succ;
 
@@ -24,9 +25,15 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  public searchDrinks(options) {
-    console.log(options);
+  public searchDrinks(options: SearchOptions) {
+    this.drinkService.searchBy(options.searchString, options.queryParam).subscribe(
+      succ => {
+        this.drinkList = succ;
+      }, err => {
+        console.log(err);
 
+      }
+    );
   }
 
 }
