@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   constructor(private drinkService: DrinkService) { }
 
   ngOnInit() {
-    this.drinkService.searchBy("vodka", "name").subscribe(
+    //init with a list of alcoholic drinks
+    this.drinkService.searchBy("Alcoholic", "alcoholic").subscribe(
       succ => {
         this.drinkList = succ;
 
@@ -26,8 +27,6 @@ export class HomeComponent implements OnInit {
   }
 
   public searchDrinks(options: SearchOptions) {
-    console.log(options);
-
     this.drinkService.searchBy(options.searchString, options.queryParam).subscribe(
       succ => {
         this.drinkList = succ;

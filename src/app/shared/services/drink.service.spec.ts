@@ -29,7 +29,7 @@ describe('DrinkService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return an Observable<DrinkVO[]> fron searchDrinks by name', () => {
+  it('should return an Observable<DrinkVO[]> from searchDrinks by name', () => {
     const query = "Margarita";
     const param = "name";
     let dummyDrinks = {
@@ -97,7 +97,6 @@ describe('DrinkService', () => {
       expect(drinks.length).toBe(1);
       expect(drinks[0].name).toBe("Margarita");
       //TODO typecheck rest of DrinkVO
-
     });
 
     const req = httpMock.expectOne(`${service.ROOT_URL}search.php?s=${query}`);
@@ -105,7 +104,7 @@ describe('DrinkService', () => {
     req.flush(dummyDrinks);
   });
 
-  it('should return an Observable<DrinkVO[]> fron searchDrinks by ingredient', () => {
+  it('should return an Observable<DrinkVO[]> from searchDrinks by ingredient', () => {
     const query = "Vodka";
     const param = "ingredient";
     let dummyDrinks = {
@@ -123,13 +122,14 @@ describe('DrinkService', () => {
       expect(drinks.length).toBe(1);
       expect(drinks[0].name).toBe("'57 Chevy with a White License Plate");
       //TODO typecheck rest of DrinkVO
-
     });
 
     const req = httpMock.expectOne(`${service.ROOT_URL}filter.php?i=${query}`);
     expect(req.request.method).toBe("GET");
     req.flush(dummyDrinks);
   });
+
+  //TODO check searchDrinks by glass, category, and alcoholic
 
 
 });

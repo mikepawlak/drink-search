@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListComponent implements OnInit {
   @Input() drinkList;
 
-
   constructor() { }
 
   ngOnInit() {
+
   }
 
   public viewDrink(id: number) {

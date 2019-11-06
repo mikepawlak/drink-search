@@ -1,3 +1,6 @@
+<div class="container" *ngIf="drinkList?.length === 0">
+    <p><em>No drinks found. :(</em></p>
+</div>
 <div class="container">
     <div class="grid">
         <div class="cell" *ngFor="let drink of drinkList">
